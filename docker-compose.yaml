@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # 1. PostgreSQL Database Service
   postgres_db:
-    image: postgres:14-alpine
+    image: postgres:14
     container_name: staging_postgres
     restart: always
     environment:
@@ -15,9 +15,10 @@ services:
 
   # 2. Python Extractor/Loader Service
   python_etl:
-    build:
-      context: ./python_extractor
-      dockerfile: Dockerfile
+    #build:
+    #  context: ./python_extractor
+    #  dockerfile: Dockerfile
+    image: abdelrahman7000/python-etl:latest
     container_name: python_extractor
     # Wait for the database to be running before starting
     #depends_on:
@@ -32,9 +33,10 @@ services:
 
   # 3. dbt Transformer Service
   dbt_transform:
-    build:
-      context: ./dbt_transformer
-      dockerfile: Dockerfile
+    #build:
+    #  context: ./dbt_transformer
+    #  dockerfile: Dockerfile
+    image: abdelrahman7000/dbt-transformer:latest
     container_name: dbt_transformer
     # dbt needs the DB, but also needs the raw data loaded by python_etl
     # In a one-off run, we trigger dbt *after* python_etl has finished.
@@ -43,7 +45,7 @@ services:
     environment:
       # Optional: Pass connection details as environment variables for dbt
       DB_HOST: postgres_db
-      DB_USER: user
+      DB_USER: postgres
       DB_PASS: password
       DB_NAME: staging_db
     # This service will be executed using `docker compose run` in the cron job.

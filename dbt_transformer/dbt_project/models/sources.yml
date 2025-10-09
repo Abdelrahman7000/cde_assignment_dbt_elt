@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: source
+    description: a clone of a Postgres 
+    database: staging_db
+    schema: public
+    tables:
+      - name: users
+        description: raw data for the customers
+
+      # - name: fact_returns
+      #   #description: Table containing order details with information about each order.
+
+      # - name: dim_customer
+      #   #description: Table containing detailed information about products within each order, including sales metrics and cost details.
+       
+
+      # - name: dim_product
+      #   #description: raw data for customers
+      
+      # - name: dim_store
+      #   #description: raw data about returned orders
+    
+      # - name: dim_date
+      #   #description: raw data about returned orders
+        

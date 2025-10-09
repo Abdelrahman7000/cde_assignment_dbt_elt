@@ -1,0 +1,23 @@
+select 
+        gender,
+        email,
+        phone,
+        cell,
+        title,
+        concat(first_name , ' ' ,last_name) full_name,
+        street_number,
+        street_name,
+        city,
+        state,
+        country,
+        postcode,
+        latitude,
+        longitude,
+        "offset",
+        uuid,
+        date_of_birth,
+        registered_date,
+        large_picture,
+        medium_picture,
+        thumbnail_picture
+from {{ ref('raw_users') }}

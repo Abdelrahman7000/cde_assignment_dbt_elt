@@ -1,0 +1,12 @@
+staging_pipeline:
+  outputs:
+    dev:
+      type: postgres
+      host: postgres_db # Matches the service name in docker-compose.yml
+      port: 5432
+      user: postgres
+      pass: password    # Matches the password in docker-compose.yml
+      dbname: staging_db # The database name to connect to
+      schema: public
+      threads: 2
+  target: dev
